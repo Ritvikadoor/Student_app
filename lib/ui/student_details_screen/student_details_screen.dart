@@ -17,7 +17,9 @@ class ScreenStudentDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.black87,
+      ),
       body: SafeArea(
         child: ListView(
           children: [
@@ -27,7 +29,7 @@ class ScreenStudentDetails extends StatelessWidget {
             const Center(
                 child: Text(
               'DETAILS',
-              style: TextStyle(fontSize: 69, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
             )),
             const SizedBox(
               height: 10,
@@ -86,8 +88,11 @@ class ScreenStudentDetails extends StatelessWidget {
               height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
+              padding: const EdgeInsets.only(left: 60, right: 60, top: 10),
               child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.black),
+                  ),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => ScreenEdit(

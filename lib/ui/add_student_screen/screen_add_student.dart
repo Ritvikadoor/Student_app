@@ -34,11 +34,13 @@ class _ScreenAddState extends State<ScreenAdd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.black87,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: ListView(children: [
+          child: ListView(shrinkWrap: true, children: [
             Form(
                 key: _formkey,
                 child: Column(
@@ -51,68 +53,104 @@ class _ScreenAddState extends State<ScreenAdd> {
                             fontSize: 40, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Center(child: imageprofile(context)),
-                    const SizedBox(
-                      height: 60,
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      controller: _nameController,
-                      decoration: const InputDecoration(
-                          hintText: 'Enter Student Name',
-                          border: OutlineInputBorder()),
+                    Center(
+                      child: ClipOval(child: imageprofile(context)),
                     ),
                     const SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 219, 219, 219),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
+                              controller: _nameController,
+                              decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  hintText: 'Enter Student Name',
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(20))),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
+                              controller: _ageController,
+                              decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  hintText: 'Enter Age',
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(20))),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
+                              controller: _phoneNumberController,
+                              decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  hintText: 'Enter the Number',
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(20))),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
+                              controller: _placeController,
+                              decoration: InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                hintText: 'Enter Place',
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
                       height: 10,
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      controller: _ageController,
-                      decoration: const InputDecoration(
-                          hintText: 'Enter Age', border: OutlineInputBorder()),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      controller: _phoneNumberController,
-                      decoration: const InputDecoration(
-                          hintText: 'Enter the Number',
-                          border: OutlineInputBorder()),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      controller: _placeController,
-                      decoration: const InputDecoration(
-                          hintText: 'Enter Place',
-                          border: OutlineInputBorder()),
-                    ),
-                    const SizedBox(
-                      height: 5,
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
@@ -134,7 +172,6 @@ class _ScreenAddState extends State<ScreenAdd> {
                           );
                         }
                         onAddStudentButtonClicked();
-                        Navigator.of(context).pop();
                       },
                       child: const Text('Add Student'),
                     )
@@ -177,7 +214,7 @@ class _ScreenAddState extends State<ScreenAdd> {
         return Container(
           height: 100,
           width: double.infinity,
-          color: Colors.blue,
+          color: Colors.white,
           child: Column(children: [
             const Text('choise your profile photo'),
             Row(
@@ -214,11 +251,13 @@ class _ScreenAddState extends State<ScreenAdd> {
             : Image.network(
                 'https://cdn3d.iconscout.com/3d/premium/thumb/young-bussinesman-avatar-5460205-4544331.png',
                 width: 250,
-                height: 250),
+                height: 250,
+                fit: BoxFit.contain,
+              ),
         Positioned(
-          left: 100,
-          right: 0,
-          top: 200,
+          left: 50,
+          right: 50,
+          top: 170,
           bottom: 0,
           // padding: const EdgeInsets.only(top: 150, left: 150),
           child: IconButton(
@@ -253,6 +292,7 @@ class _ScreenAddState extends State<ScreenAdd> {
 
       addStudent(_student);
       imgstring = '';
+      Navigator.of(context).pop();
     }
   }
 }
